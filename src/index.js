@@ -1,5 +1,5 @@
 'use strict';
 
-import Karas from './Karas';
+import Yurine from './Yurine';
 
-export default Karas;
+export default Yurine;

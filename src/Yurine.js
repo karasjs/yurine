@@ -1,7 +1,7 @@
 import homunculus from 'homunculus';
 import Tree from './Tree';
 
-class Karas {
+class Yurine {
   constructor() {
     this.parser = null;
     this.node = null;
@@ -20,8 +20,8 @@ class Karas {
   }
 
   static parse(code) {
-    return new Karas().parse(code);
+    return new Yurine().parse(code);
   }
 }
 
-export default Karas;
+export default Yurine;
