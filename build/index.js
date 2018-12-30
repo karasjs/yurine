@@ -1,14 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
-})(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
+(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -11271,6 +11261,41 @@ module.exports = __webpack_require__(/*! ./build/jaw */ "./node_modules/jaw/buil
 
 /***/ }),
 
+/***/ "./node_modules/webpack/buildin/harmony-module.js":
+/*!*******************************************!*\
+  !*** (webpack)/buildin/harmony-module.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function (originalModule) {
+  if (!originalModule.webpackPolyfill) {
+    var module = Object.create(originalModule); // module.parent = undefined by default
+
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function () {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function () {
+        return module.i;
+      }
+    });
+    Object.defineProperty(module, "exports", {
+      enumerable: true
+    });
+    module.webpackPolyfill = 1;
+  }
+
+  return module;
+};
+
+/***/ }),
+
 /***/ "./src/InnerTree.js":
 /*!**************************!*\
   !*** ./src/InnerTree.js ***!
@@ -12349,16 +12374,17 @@ parse.S = S;
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Yurine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Yurine */ "./src/Yurine.js");
+/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _Yurine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Yurine */ "./src/Yurine.js");
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_Yurine__WEBPACK_IMPORTED_MODULE_0__["default"]);
+module.exports = _Yurine__WEBPACK_IMPORTED_MODULE_0__["default"];
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
 
 /***/ }),
 
@@ -12575,11 +12601,14 @@ function selfClose(node, opt, param) {
     }
   }
 
-  if (/^[A-Z]/.test(name)) {
-    res += 'yurine.createCp(';
-    res += name;
+  if (/-/.test(name)) {
+    res += 'karas.createCp(';
+    res += name.replace(/-([A-Za-z])/g, '$1');
+  } else if (/^[A-Z]/.test(name)) {
+    res += 'karas.createGeom(';
+    res += '"' + name + '"';
   } else {
-    res += 'yurine.createVd(';
+    res += 'karas.createDom(';
     res += '"' + name + '"';
   }
 
@@ -13260,6 +13289,5 @@ function parse(node, param) {
 
 /***/ })
 
-/******/ });
-});
+/******/ })));
 //# sourceMappingURL=index.js.map

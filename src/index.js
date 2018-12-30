@@ -2,4 +2,4 @@
 
 import Yurine from './Yurine';
 
-export default Yurine;
+module.exports = Yurine;

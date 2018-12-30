@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build/'),
-    libraryTarget: 'umd',
+    libraryTarget: 'commonjs',
   },
   module: {
     rules: [
