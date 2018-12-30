@@ -11261,41 +11261,6 @@ module.exports = __webpack_require__(/*! ./build/jaw */ "./node_modules/jaw/buil
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/harmony-module.js":
-/*!*******************************************!*\
-  !*** (webpack)/buildin/harmony-module.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = function (originalModule) {
-  if (!originalModule.webpackPolyfill) {
-    var module = Object.create(originalModule); // module.parent = undefined by default
-
-    if (!module.children) module.children = [];
-    Object.defineProperty(module, "loaded", {
-      enumerable: true,
-      get: function () {
-        return module.l;
-      }
-    });
-    Object.defineProperty(module, "id", {
-      enumerable: true,
-      get: function () {
-        return module.i;
-      }
-    });
-    Object.defineProperty(module, "exports", {
-      enumerable: true
-    });
-    module.webpackPolyfill = 1;
-  }
-
-  return module;
-};
-
-/***/ }),
-
 /***/ "./src/InnerTree.js":
 /*!**************************!*\
   !*** ./src/InnerTree.js ***!
@@ -12374,17 +12339,16 @@ parse.S = S;
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _Yurine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Yurine */ "./src/Yurine.js");
+/* harmony import */ var _Yurine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Yurine */ "./src/Yurine.js");
 
 
 
-module.exports = _Yurine__WEBPACK_IMPORTED_MODULE_0__["default"];
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+/* harmony default export */ __webpack_exports__["default"] = (_Yurine__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
