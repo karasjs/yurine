@@ -1,4 +1,14 @@
-(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})((typeof window !== 'undefined' ? window : this), function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -12565,12 +12575,9 @@ function selfClose(node, opt, param) {
     }
   }
 
-  if (/-/.test(name)) {
+  if (/-/.test(name) || /^[A-Z]/.test(name)) {
     res += 'karas.createCp(';
     res += name.replace(/-([A-Za-z])/g, '$1');
-  } else if (/^[A-Z]/.test(name)) {
-    res += 'karas.createGeom(';
-    res += '"' + name + '"';
   } else {
     res += 'karas.createDom(';
     res += '"' + name + '"';
@@ -13253,5 +13260,6 @@ function parse(node, param) {
 
 /***/ })
 
-/******/ })));
+/******/ });
+});
 //# sourceMappingURL=index.js.map

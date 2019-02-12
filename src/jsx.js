@@ -74,13 +74,9 @@ function selfClose(node, opt, param) {
       name += first.leaf(i).token().content();
     }
   }
-  if(/-/.test(name)) {
+  if(/-/.test(name) || /^[A-Z]/.test(name)) {
     res += 'karas.createCp(';
     res += name.replace(/-([A-Za-z])/g, '$1');
-  }
-  else if(/^[A-Z]/.test(name)) {
-    res += 'karas.createGeom(';
-    res += '"' + name + '"';
   }
   else {
     res += 'karas.createDom(';
