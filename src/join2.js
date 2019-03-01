@@ -1,6 +1,6 @@
 import homunculus from 'homunculus';
 
-let Token = homunculus.getClass('token', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
 
 let S = {};
 S[Token.LINE] = S[Token.COMMENT] = S[Token.BLANK] = true;

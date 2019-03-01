@@ -1,8 +1,8 @@
 import homunculus from 'homunculus';
 import arrowfn from './arrowfn';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 function parse(node, res, param, opt) {
   if(node.isToken()) {
@@ -96,28 +96,28 @@ function parse(node, res, param, opt) {
           }
         }
         break;
-      case Node.JSXElement:
+      case Node.CSXElement:
         parse(node.first(), res, param, opt);
         for(let i = 1, leaves = node.leaves(); i < leaves.length - 1; i++) {
           parse(leaves[i], res, param, opt);
         }
         break;
-      case Node.JSXSelfClosingElement:
-      case Node.JSXOpeningElement:
+      case Node.CSXSelfClosingElement:
+      case Node.CSXOpeningElement:
         for(let i = 1, leaves = node.leaves(); i < leaves.length - 1; i++) {
           parse(leaves[i], res, param, opt);
         }
         break;
-      case Node.JSXAttribute:
+      case Node.CSXAttribute:
         let value = node.last();
-        if(value.name() === Node.JSXAttributeValue) {
+        if(value.name() === Node.CSXAttributeValue) {
           let first = value.first();
           if(first.isToken() && first.token().content() === '{') {
             parse(value.leaf(1), res, param, opt);
           }
         }
         break;
-      case Node.JSXChild:
+      case Node.CSXChild:
         node.leaves().forEach((leaf) => {
           parse(leaf, res, param, opt);
         });

@@ -1,11 +1,11 @@
 import homunculus from 'homunculus';
 import ignore from './ignore';
 import InnerTree from './InnerTree';
-import jsx from './jsx';
+import csx from './csx';
 import join2 from './join2';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 let res;
 
@@ -34,9 +34,9 @@ function recursion(node, param) {
   }
   else {
     switch(node.name()) {
-      case Node.JSXElement:
-      case Node.JSXSelfClosingElement:
-        res += jsx(node, { isBind: true, }, param);
+      case Node.CSXElement:
+      case Node.CSXSelfClosingElement:
+        res += csx(node, { isBind: true, }, param);
         return;
       case Node.FNEXPR:
       case Node.FNDECL:

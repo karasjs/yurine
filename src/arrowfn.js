@@ -1,8 +1,8 @@
 import homunculus from 'homunculus';
 import linkage from './linkage';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 function parse(node, res, param, opt) {
   switch(node.name()) {

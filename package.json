@@ -1,16 +1,23 @@
 {
   "name": "yurine",
   "version": "0.1.0",
-  "description": "百合音",
+  "description": "A CSX transformer for karas",
+  "author": "army8735 <army8735@qq.com>",
   "maintainers": [
     {
       "name": "army8735",
       "email": "army8735@qq.com"
     }
   ],
+  "keywords": [
+    "karasjs",
+    "karas",
+    "yurine",
+    "csx transformer"
+  ],
   "scripts": {
-    "build": "webpack --colors",
-    "dev": "webpack --config webpack-dev.config.js --colors",
+    "build": "gulp",
+    "watch": "gulp watch",
     "test": "make test"
   },
   "repository": {
@@ -18,7 +25,7 @@
     "url": "git://github.com/karasjs/yurine.git"
   },
   "dependencies": {
-    "homunculus": "~1.3.4",
+    "homunculus": "~1.4.0",
     "jaw": "~5.0.0"
   },
   "devDependencies": {
@@ -33,15 +40,12 @@
     "gulp-util": "^3.0.1",
     "mocha": "^2.2.4",
     "mocha-lcov-reporter": "^0.0.2",
-    "through2": "^2.0.0",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "through2": "^2.0.0"
   },
-  "main": "./build/index",
+  "main": "./index",
   "engines": {
     "node": ">=10.0.0"
   },
   "license": "MIT",
-  "readmeFilename": "README.md",
-  "author": "army8735 <army8735@qq.com>"
+  "readmeFilename": "README.md"
 }

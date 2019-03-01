@@ -1,11 +1,11 @@
 import homunculus from 'homunculus';
-import jsx from './jsx';
+import csx from './csx';
 import ignore from './ignore';
 import linkage from './linkage';
 import join2 from './join2';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 class InnerTree {
   constructor(opt = {}, param = {}) {
@@ -41,9 +41,9 @@ class InnerTree {
     }
     else {
       switch(node.name()) {
-        case Node.JSXElement:
-        case Node.JSXSelfClosingElement:
-          this.res += jsx(node, {
+        case Node.CSXElement:
+        case Node.CSXSelfClosingElement:
+          this.res += csx(node, {
             isInBind: self.opt.isInBind || self.opt.isBind,
             arrowFn: self.opt.arrowFn,
           }, self.param);

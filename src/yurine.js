@@ -7,7 +7,7 @@ class Yurine {
     this.node = null;
   }
   parse(code) {
-    this.parser = homunculus.getParser('jsx');
+    this.parser = homunculus.getParser('csx');
     this.node = this.parser.parse(code);
     let tree = new Tree();
     return tree.parse(this.node);
@@ -24,4 +24,4 @@ class Yurine {
   }
 }
 
-export default Yurine;
+export default new Yurine();

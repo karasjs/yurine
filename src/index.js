@@ -1,5 +1,5 @@
 'use strict';
 
-import Yurine from './Yurine';
+import Yurine from './yurine';
 
 export default Yurine;

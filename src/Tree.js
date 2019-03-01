@@ -1,10 +1,10 @@
 import homunculus from 'homunculus';
-import jsx from './jsx';
+import csx from './csx';
 import ignore from './ignore';
 import render from './render';
 import join2 from './join2';
 
-let Node = homunculus.getClass('node', 'jsx');
+let Node = homunculus.getClass('node', 'csx');
 
 class Tree {
   constructor() {
@@ -37,9 +37,9 @@ class Tree {
     }
     else {
       switch(node.name()) {
-        case Node.JSXElement:
-        case Node.JSXSelfClosingElement:
-          this.res += jsx(node, {}, this.param);
+        case Node.CSXElement:
+        case Node.CSXSelfClosingElement:
+          this.res += csx(node, {}, this.param);
           return;
         case Node.CLASSDECL:
           inClass = this.klass(node);

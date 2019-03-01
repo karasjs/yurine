@@ -6,8 +6,8 @@ import join from './join';
 import join2 from './join2';
 import delegate from './delegate';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 function elem(node, opt, param) {
   let res = '';
@@ -18,7 +18,7 @@ function elem(node, opt, param) {
   for(let i = 1, len = node.size(); i < len - 1; i++) {
     let leaf = node.leaf(i);
     switch(leaf.name()) {
-      case Node.JSXChild:
+      case Node.CSXChild:
         if(comma) {
           res += ',';
           comma = false;
@@ -30,7 +30,7 @@ function elem(node, opt, param) {
         let s = leaf.token().content();
         //open和close之间的空白不能忽略
         if(/^\s+$/.test(s)) {
-          if(leaf.prev().name() === Node.JSXOpeningElement && leaf.next().name() === Node.JSXClosingElement) {
+          if(leaf.prev().name() === Node.CSXOpeningElement && leaf.next().name() === Node.CSXClosingElement) {
             res += '"' + s.replace(/"/g, '\\"').replace(/\n/g, '\\n\\\n') + '"';
           }
           else {
@@ -56,7 +56,7 @@ function elem(node, opt, param) {
     }
   }
   res += '])';
-  if(node.last().name() === Node.JSXClosingElement) {
+  if(node.last().name() === Node.CSXClosingElement) {
     res += ignore(node.last(), true).res;
   }
   return res;
@@ -68,18 +68,22 @@ function selfClose(node, opt, param) {
   if(first.isToken()) {
     name = first.token().content();
   }
-  else if(first.name() === Node.JSXMemberExpression) {
+  else if(first.name() === Node.CSXMemberExpression) {
     name = first.first().token().content();
     for(let i = 1, len = first.size(); i < len; i++) {
       name += first.leaf(i).token().content();
     }
   }
-  if(/-/.test(name) || /^[A-Z]/.test(name)) {
+  if(/^[A-Z]/.test(name)) {
     res += 'karas.createCp(';
-    res += name.replace(/-([A-Za-z])/g, '$1');
+    res += name;
+  }
+  else if(/^\$/.test(name)) {
+    res += 'karas.createGp(';
+    res += '"' + name + '"';
   }
   else {
-    res += 'karas.createDom(';
+    res += 'karas.createVd(';
     res += '"' + name + '"';
   }
   res += ',[';
@@ -89,13 +93,13 @@ function selfClose(node, opt, param) {
       res += ',';
     }
     switch(leaf.name()) {
-      case Node.JSXBindAttribute:
+      case Node.CSXBindAttribute:
         res += attr(leaf, opt, param);
         break;
-      case Node.JSXAttribute:
+      case Node.CSXAttribute:
         res += attr(leaf, opt, param);
         break;
-      case Node.JSXSpreadAttribute:
+      case Node.CSXSpreadAttribute:
         res += spread(leaf);
         break;
     }
@@ -183,7 +187,7 @@ function child(node, opt, param, isAttr) {
           }
         }
       }
-      else if(node.prev() && node.prev().name() === Node.JSXOpeningElement) {
+      else if(node.prev() && node.prev().name() === Node.CSXOpeningElement) {
         let key = node.prev().leaf(1).token().content();
         if(key === 'textarea') {
           let value = node.leaf(1);
@@ -257,7 +261,7 @@ function child(node, opt, param, isAttr) {
         }
       }
     }
-    else if(node.prev() && node.prev().name() === Node.JSXOpeningElement) {
+    else if(node.prev() && node.prev().name() === Node.CSXOpeningElement) {
       let key = node.prev().leaf(1).token().content();
       if(key === 'textarea') {
         let temp = linkage(callexpr, param, {
@@ -301,10 +305,10 @@ function child(node, opt, param, isAttr) {
 function parse(node, opt, param) {
   let res = '';
   switch(node.name()) {
-    case Node.JSXElement:
+    case Node.CSXElement:
       res += elem(node, opt, param);
       break;
-    case Node.JSXSelfClosingElement:
+    case Node.CSXSelfClosingElement:
       res += selfClose(node, opt, param);
       res += ')';
       break;

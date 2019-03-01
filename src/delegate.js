@@ -5,8 +5,8 @@ import join from './join';
 import join2 from './join2';
 import jaw from 'jaw';
 
-let Token = homunculus.getClass('token', 'jsx');
-let Node = homunculus.getClass('node', 'jsx');
+let Token = homunculus.getClass('token', 'csx');
+let Node = homunculus.getClass('node', 'csx');
 
 let S = {};
 S[Token.LINE] = S[Token.COMMENT] = S[Token.BLANK] = true;
