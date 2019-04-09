@@ -1,5 +1,5 @@
 define(function(require, exports, module) {
-  var yurine = require('./build/index')['default'];
+  var yurine = require('./web/index')['default'];
   yurine.init = function() {
     var jsx = document.querySelectorAll('script');
     for(var i = 0, len = jsx.length; i < len; i++) {
