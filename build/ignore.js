@@ -3,17 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var ES6Token = _homunculus.default.getClass('token', 'js');
+var ES6Token = _homunculus["default"].getClass('token', 'js');
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 var S = {};
 S[Token.LINE] = S[Token.COMMENT] = S[Token.BLANK] = true;
@@ -63,4 +63,4 @@ function parse(node, includeLine) {
 
 parse.S = S;
 var _default = parse;
-exports.default = _default;
+exports["default"] = _default;

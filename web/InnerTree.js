@@ -3,7 +3,7 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
@@ -15,7 +15,7 @@ var _linkage = _interopRequireDefault(require("./linkage"));
 
 var _join = _interopRequireDefault(require("./join2"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -23,9 +23,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 var InnerTree =
 /*#__PURE__*/
@@ -67,7 +67,7 @@ function () {
         while (token.next()) {
           token = token.next();
 
-          if (token.isVirtual() || !_ignore.default.S.hasOwnProperty(token.type())) {
+          if (token.isVirtual() || !_ignore["default"].S.hasOwnProperty(token.type())) {
             break;
           }
 
@@ -79,7 +79,7 @@ function () {
         switch (node.name()) {
           case Node.CSXElement:
           case Node.CSXSelfClosingElement:
-            this.res += (0, _csx.default)(node, {
+            this.res += (0, _csx["default"])(node, {
               isInBind: self.opt.isInBind || self.opt.isBind,
               arrowFn: self.opt.arrowFn
             }, self.param);
@@ -98,14 +98,14 @@ function () {
               }
 
               if (allReturn) {
-                var temp = (0, _linkage.default)(node.leaf(1), self.param, {
+                var temp = (0, _linkage["default"])(node.leaf(1), self.param, {
                   arrowFn: self.opt.arrowFn
                 });
                 var list = temp.arr;
                 var listener = list.length === 1 ? '"' + list[0] + '"' : JSON.stringify(list);
 
                 if (list.length) {
-                  return this.res += (0, _join.default)(node.first()) + 'new yurine.Obj(' + listener + ',()=>{return(' + new InnerTree(self.opt, self.param).parse(node.leaf(1)).replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1') + ')})';
+                  return this.res += (0, _join["default"])(node.first()) + 'new yurine.Obj(' + listener + ',()=>{return(' + new InnerTree(self.opt, self.param).parse(node.leaf(1)).replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1') + ')})';
                 }
               }
             }
@@ -163,4 +163,4 @@ function () {
 }();
 
 var _default = InnerTree;
-exports.default = _default;});
+exports["default"] = _default;});

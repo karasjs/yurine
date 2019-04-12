@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
@@ -17,11 +17,11 @@ var _join2 = _interopRequireDefault(require("./join2"));
 
 var _jaw = _interopRequireDefault(require("jaw"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 var S = {};
 S[Token.LINE] = S[Token.COMMENT] = S[Token.BLANK] = true;
@@ -34,17 +34,17 @@ function parse(node) {
     var objltr = prmr.first();
 
     if (objltr && objltr.name() === Node.OBJLTR) {
-      res = (0, _ignore.default)(node.first(), true).res + '[';
+      res = (0, _ignore["default"])(node.first(), true).res + '[';
       recursion(objltr);
-      res += (0, _ignore.default)(node.last(), true).res + ']';
+      res += (0, _ignore["default"])(node.last(), true).res + ']';
     } else {
-      var tree = new _InnerTree.default();
+      var tree = new _InnerTree["default"]();
       res = tree.parse(node);
       res = res.replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1');
       res = filter(res);
     }
   } else {
-    var _tree = new _InnerTree.default();
+    var _tree = new _InnerTree["default"]();
 
     res = _tree.parse(node);
     res = res.replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1');
@@ -55,34 +55,34 @@ function parse(node) {
 }
 
 function recursion(objltr) {
-  res += (0, _ignore.default)(objltr.first(), true).res;
+  res += (0, _ignore["default"])(objltr.first(), true).res;
 
   for (var i = 1, len = objltr.size(); i < len - 1; i++) {
     var leaf = objltr.leaf(i);
 
     if (leaf.isToken()) {
-      var s = (0, _join2.default)(leaf);
+      var s = (0, _join2["default"])(leaf);
       res += s;
     } else if (leaf.name() === Node.PROPTDEF) {
       res += '[';
       var proptname = leaf.first();
 
-      var _s = (0, _join.default)(proptname).replace(/^(["'])(.+)\1$/, '$2') + '{}';
+      var _s = (0, _join["default"])(proptname).replace(/^(["'])(.+)\1$/, '$2') + '{}';
 
-      _s = _jaw.default.parse(_s, {
+      _s = _jaw["default"].parse(_s, {
         noPriority: true,
         noValue: true,
         noMedia: true
       });
       res += JSON.stringify(_s);
       res += ',';
-      res += filter((0, _join.default)(leaf.last()));
+      res += filter((0, _join["default"])(leaf.last()));
       res += ']';
-      res += (0, _ignore.default)(leaf, true).res;
+      res += (0, _ignore["default"])(leaf, true).res;
     }
   }
 
-  res += (0, _ignore.default)(objltr.last(), true).res;
+  res += (0, _ignore["default"])(objltr.last(), true).res;
 }
 
 function filter(s) {
@@ -98,4 +98,4 @@ function filter(s) {
 }
 
 var _default = parse;
-exports.default = _default;
+exports["default"] = _default;

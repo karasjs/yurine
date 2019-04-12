@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
 var _Tree = _interopRequireDefault(require("./Tree"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -30,9 +30,9 @@ function () {
   _createClass(Yurine, [{
     key: "parse",
     value: function parse(code) {
-      this.parser = _homunculus.default.getParser('csx');
+      this.parser = _homunculus["default"].getParser('csx');
       this.node = this.parser.parse(code);
-      var tree = new _Tree.default();
+      var tree = new _Tree["default"]();
       return tree.parse(this.node);
     }
   }, {
@@ -57,4 +57,4 @@ function () {
 
 var _default = new Yurine();
 
-exports.default = _default;
+exports["default"] = _default;

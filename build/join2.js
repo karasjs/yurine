@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
 var S = {};
 S[Token.LINE] = S[Token.COMMENT] = S[Token.BLANK] = true;

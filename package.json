@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "gulp",
-    "watch": "gulp watch",
+    "dev": "gulp watch",
     "test": "make test"
   },
   "repository": {
@@ -25,12 +25,12 @@
     "url": "git://github.com/karasjs/yurine.git"
   },
   "dependencies": {
-    "homunculus": "~1.4.0",
+    "homunculus": "~1.4.2",
     "jaw": "~5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.4",
     "blanket": "^1.1.6",
     "coveralls": "^2.11.2",
@@ -40,7 +40,7 @@
     "gulp-util": "^3.0.1",
     "mocha": "^2.2.4",
     "mocha-lcov-reporter": "^0.0.2",
-    "through2": "^2.0.0"
+    "through2": "^3.0.0"
   },
   "main": "./index",
   "engines": {

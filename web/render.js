@@ -3,7 +3,7 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
@@ -15,11 +15,11 @@ var _csx = _interopRequireDefault(require("./csx"));
 
 var _join = _interopRequireDefault(require("./join2"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 var res;
 
@@ -42,7 +42,7 @@ function recursion(node, param) {
     while (token.next()) {
       token = token.next();
 
-      if (token.isVirtual() || !_ignore.default.S.hasOwnProperty(token.type())) {
+      if (token.isVirtual() || !_ignore["default"].S.hasOwnProperty(token.type())) {
         break;
       }
 
@@ -54,7 +54,7 @@ function recursion(node, param) {
     switch (node.name()) {
       case Node.CSXElement:
       case Node.CSXSelfClosingElement:
-        res += (0, _csx.default)(node, {
+        res += (0, _csx["default"])(node, {
           isBind: true
         }, param);
         return;
@@ -62,7 +62,7 @@ function recursion(node, param) {
       case Node.FNEXPR:
       case Node.FNDECL:
       case Node.CLASSEXPR:
-        var tree = new _InnerTree.default();
+        var tree = new _InnerTree["default"]();
         res += tree.parse(node);
         return;
     }
@@ -83,11 +83,11 @@ function parse(node, param) {
         stmt(item, param);
       });
     } else {
-      res += (0, _join.default)(leaf);
+      res += (0, _join["default"])(leaf);
     }
   });
   return res;
 }
 
 var _default = parse;
-exports.default = _default;});
+exports["default"] = _default;});

@@ -3,7 +3,7 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
@@ -15,7 +15,7 @@ var _render = _interopRequireDefault(require("./render"));
 
 var _join = _interopRequireDefault(require("./join2"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -23,7 +23,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 var Tree =
 /*#__PURE__*/
@@ -60,7 +60,7 @@ function () {
         while (token.next()) {
           token = token.next();
 
-          if (token.isVirtual() || !_ignore.default.S.hasOwnProperty(token.type())) {
+          if (token.isVirtual() || !_ignore["default"].S.hasOwnProperty(token.type())) {
             break;
           }
 
@@ -72,7 +72,7 @@ function () {
         switch (node.name()) {
           case Node.CSXElement:
           case Node.CSXSelfClosingElement:
-            this.res += (0, _csx.default)(node, {}, this.param);
+            this.res += (0, _csx["default"])(node, {}, this.param);
             return;
 
           case Node.CLASSDECL:
@@ -102,7 +102,7 @@ function () {
             var isRender = this.method(node);
 
             if (isRender) {
-              this.res += (0, _render.default)(node, this.param || {});
+              this.res += (0, _render["default"])(node, this.param || {});
               return;
             }
 
@@ -110,9 +110,9 @@ function () {
 
           case Node.ANNOT:
             if (['@bind', '@eval', '@link'].indexOf(node.first().token().content()) > -1) {
-              this.res += (0, _ignore.default)(node, true).res;
+              this.res += (0, _ignore["default"])(node, true).res;
             } else {
-              this.res += (0, _join.default)(node);
+              this.res += (0, _join["default"])(node);
             }
 
             return;
@@ -414,13 +414,13 @@ function () {
         }
 
         s += '}get ' + name + '(){';
-        s += (0, _ignore.default)(token).res;
+        s += (0, _ignore["default"])(token).res;
 
         if (init) {
           s += 'if(this.__initBind("' + name + '"))';
           s += 'this.__setBind("' + name + '",';
-          s += (0, _ignore.default)(init.first()).res;
-          s += (0, _join.default)(init.last());
+          s += (0, _ignore["default"])(init.first()).res;
+          s += (0, _join["default"])(init.last());
           s += ');';
         }
 
@@ -464,4 +464,4 @@ function parseLex(param, name, item, annot) {
 }
 
 var _default = Tree;
-exports.default = _default;});
+exports["default"] = _default;});

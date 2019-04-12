@@ -3,15 +3,15 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var JsNode = _homunculus.default.getClass('Node', 'es6');
+var JsNode = _homunculus["default"].getClass('Node', 'es6');
 
-var Token = _homunculus.default.getClass('Token');
+var Token = _homunculus["default"].getClass('Token');
 
 function _default(node, word) {
   var res = recursion(node, {

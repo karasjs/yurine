@@ -3,22 +3,22 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
 var _linkage = _interopRequireDefault(require("./linkage"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 function parse(node, res, param, opt) {
   switch (node.name()) {
     case Node.EXPRSTMT:
-      (0, _linkage.default)(node.first(), param, opt).arr.forEach(function (item) {
+      (0, _linkage["default"])(node.first(), param, opt).arr.forEach(function (item) {
         res[item] = true;
       });
       break;
@@ -27,7 +27,7 @@ function parse(node, res, param, opt) {
       node.leaves().forEach(function (leaf, i) {
         if (i % 2 === 1) {
           var initlz = leaf.leaf(1);
-          var temp = (0, _linkage.default)(initlz.leaf(1), param, opt);
+          var temp = (0, _linkage["default"])(initlz.leaf(1), param, opt);
           temp.arr.forEach(function (item) {
             res[item] = true;
           });
@@ -46,7 +46,7 @@ function parse(node, res, param, opt) {
 
     case Node.IFSTMT:
       var condition = node.leaf(2);
-      (0, _linkage.default)(condition, param, opt).arr.forEach(function (item) {
+      (0, _linkage["default"])(condition, param, opt).arr.forEach(function (item) {
         res[item] = true;
       });
       parse(node.last(), res, param, opt);
@@ -69,7 +69,7 @@ function parse(node, res, param, opt) {
         var second = node.leaf(3); // for(;;...
 
         if (second.isToken()) {} else {
-          var temp = (0, _linkage.default)(second, param, opt);
+          var temp = (0, _linkage["default"])(second, param, opt);
           temp.arr.forEach(function (item) {
             res[item] = true;
           });
@@ -81,14 +81,14 @@ function parse(node, res, param, opt) {
           third = node.leaf(5);
 
           if (third.isToken()) {} else {
-            var _temp = (0, _linkage.default)(third, param, opt);
+            var _temp = (0, _linkage["default"])(third, param, opt);
 
             _temp.arr.forEach(function (item) {
               res[item] = true;
             });
           }
         } else {
-          var _temp2 = (0, _linkage.default)(third, param, opt);
+          var _temp2 = (0, _linkage["default"])(third, param, opt);
 
           _temp2.arr.forEach(function (item) {
             res[item] = true;
@@ -99,13 +99,13 @@ function parse(node, res, param, opt) {
 
         parse(_blockstmt, res, param, opt);
 
-        var _temp3 = (0, _linkage.default)(node.leaf(4), param, opt);
+        var _temp3 = (0, _linkage["default"])(node.leaf(4), param, opt);
 
         _temp3.arr.forEach(function (item) {
           res[item] = true;
         });
       } else if (peek === 'while') {
-        var _temp4 = (0, _linkage.default)(node.leaf(2), param, opt);
+        var _temp4 = (0, _linkage["default"])(node.leaf(2), param, opt);
 
         _temp4.arr.forEach(function (item) {
           res[item] = true;
@@ -122,7 +122,7 @@ function parse(node, res, param, opt) {
         if (i % 2 === 1) {
           var initlz = leaf.leaf(1);
 
-          var _temp5 = (0, _linkage.default)(initlz.leaf(1), param, opt);
+          var _temp5 = (0, _linkage["default"])(initlz.leaf(1), param, opt);
 
           _temp5.arr.forEach(function (item) {
             res[item] = true;
@@ -144,7 +144,7 @@ function parse(node, res, param, opt) {
         }
 
         if (!allReturn) {
-          (0, _linkage.default)(node.leaf(1), param, opt).arr.forEach(function (item) {
+          (0, _linkage["default"])(node.leaf(1), param, opt).arr.forEach(function (item) {
             res[item] = true;
           });
         }
@@ -153,7 +153,7 @@ function parse(node, res, param, opt) {
       break;
 
     case Node.WITHSTMT:
-      (0, _linkage.default)(node.leaf(2), param, opt).arr.forEach(function (item) {
+      (0, _linkage["default"])(node.leaf(2), param, opt).arr.forEach(function (item) {
         res[item] = true;
       });
       var blockstmt = node.last();
@@ -161,7 +161,7 @@ function parse(node, res, param, opt) {
       break;
 
     case Node.SWCHSTMT:
-      (0, _linkage.default)(node.leaf(2), param, opt).arr.forEach(function (item) {
+      (0, _linkage["default"])(node.leaf(2), param, opt).arr.forEach(function (item) {
         res[item] = true;
       });
       var caseblock = node.last();
@@ -177,7 +177,7 @@ function parse(node, res, param, opt) {
         if (leaf.name() === Node.CASECLAUSE) {
           var expr = leaf.leaf(1);
 
-          var _temp6 = (0, _linkage.default)(expr, param, opt);
+          var _temp6 = (0, _linkage["default"])(expr, param, opt);
 
           _temp6.arr.forEach(function (item) {
             res[item] = true;

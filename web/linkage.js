@@ -3,17 +3,17 @@ define(function(require, exports, module){"use strict";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 var _homunculus = _interopRequireDefault(require("homunculus"));
 
 var _arrowfn = _interopRequireDefault(require("./arrowfn"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Token = _homunculus.default.getClass('token', 'csx');
+var Token = _homunculus["default"].getClass('token', 'csx');
 
-var Node = _homunculus.default.getClass('node', 'csx');
+var Node = _homunculus["default"].getClass('node', 'csx');
 
 function parse(node, res, param, opt) {
   if (node.isToken()) {} else {
@@ -120,7 +120,7 @@ function parse(node, res, param, opt) {
                   opt.arrowFn.push(_callexpr.parent().name() === Node.RETSTMT);
                 }
 
-                (0, _arrowfn.default)(body, res, param, opt);
+                (0, _arrowfn["default"])(body, res, param, opt);
                 opt.arrowFn.pop();
               }
             }
