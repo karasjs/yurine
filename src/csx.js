@@ -79,7 +79,7 @@ function selfClose(node, opt, param) {
     res += name;
   }
   else if(/^\$/.test(name)) {
-    res += 'karas.createGp(';
+    res += 'karas.createGm(';
     res += '"' + name + '"';
   }
   else {

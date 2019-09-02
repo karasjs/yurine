@@ -106,7 +106,7 @@ function selfClose(node, opt, param) {
     res += 'karas.createCp(';
     res += name;
   } else if (/^\$/.test(name)) {
-    res += 'karas.createGp(';
+    res += 'karas.createGm(';
     res += '"' + name + '"';
   } else {
     res += 'karas.createVd(';

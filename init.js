@@ -4,7 +4,7 @@ define(function(require, exports, module) {
     var jsx = document.querySelectorAll('script');
     for(var i = 0, len = jsx.length; i < len; i++) {
       var node = jsx[i];
-      if(node.getAttribute('type') === 'text/jsx' && !node.getAttribute('yurine')) {
+      if(node.getAttribute('type') === 'text/csx' && !node.getAttribute('yurine')) {
         node.setAttribute('yurine', 1);
         var code = node.textContent || node.text;
         if(!code) {
