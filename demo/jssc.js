@@ -1,6 +1,6 @@
 define(function(require, exports) {
 	var factory = require('./factory'),
-		Token = require('./lexer/Token'),
+		Token = homunculus.getClass('token'),
 		render = require('./render'),
 		cacheLine = 0,
 		cacheTime = 0,
@@ -35,7 +35,7 @@ define(function(require, exports) {
 			div = document.createElement('div'),
 			col = document.createElement('div'),
 			lastCol = 0;
-		var ol = document.createElement('ol');
+			ol = document.createElement('ol');
 		ol.start = start;
 		for(var i = 0; i < tab; i++) {
 			tabBlank += '&nbsp';

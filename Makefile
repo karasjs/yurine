@@ -1,8 +1,8 @@
 test:
-  @mocha tests/test.js -R spec
+	@mocha tests/test.js -R spec
 
 test-compress:
-  @mocha --timeout 5000 -R spec
+	@mocha --timeout 5000 -R spec
 
 coveralls:
 	@mocha tests/test.js --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js

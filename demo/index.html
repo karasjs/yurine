@@ -57,6 +57,8 @@
 <pre><code class="brush:es6"></code></pre>
 <script src="sea.js"></script>
 <script src="kinetic-v4.4.0.min.js"></script>
+<script src="homunculus.js"></script>
+<script src="../yurine.js"></script>
 <script>
   var w = 0, h = 0;
   function draw(i, res, node) {
@@ -131,8 +133,8 @@
   }
   seajs.config({
     alias: {
-      'homunculus': seajs.resolve('../node_modules/homunculus/index.js', seajs.data.cwd),
-      'jsdc': seajs.resolve('../node_modules/jsdc/index.js', seajs.data.cwd),
+      // 'homunculus': seajs.resolve('../node_modules/homunculus/index.js', seajs.data.cwd),
+      // 'jsdc': seajs.resolve('../node_modules/jsdc/index.js', seajs.data.cwd),
       'jaw': seajs.resolve('../node_modules/jaw/init.js', seajs.data.cwd)
     },
     map: [function(url) {
@@ -140,14 +142,14 @@
     }]
   });
   define('fs', {});
-  seajs.use(['../init', './jssc'], function(lefty, jssc) {
+  seajs.use(['./jssc'], function(jssc) {
     function init() {
       console.clear();
       var nodes = document.getElementsByTagName('code');
       var node = nodes[0];
-      var res = lefty.parse(node.textContent || node.innerText || node.firstChild && node.firstChild.nodeValue);
-      var ast = lefty.ast();
-      var tokens = lefty.tokens();
+      var res = yurine.parse(node.textContent || node.innerText || node.firstChild && node.firstChild.nodeValue);
+      var ast = yurine.ast();
+      var tokens = yurine.tokens();
       nodes[1].innerHTML = res.replace(/</g, '&lt;');
       if(ast) {
         draw(0, ast, nodes[1].parentNode.nextSibling);
