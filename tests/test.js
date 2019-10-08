@@ -111,3 +111,11 @@ describe('simple', function() {
     expect(res).to.eql('karas.createVd("wb:share-button",[],[])');
   });
 });
+
+describe('classes', function() {
+  it('class', function() {
+    var s = 'class A{render(){return <div/>}}';
+    var res = yurine.parse(s);
+    expect(res).to.eql('class A{render(){return karas.createVd("div",[])}}');
+  });
+});
