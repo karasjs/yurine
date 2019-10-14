@@ -4,7 +4,7 @@ export default {
   input: 'src/index.js',
   output: {
     name: 'yurine',
-    file: 'yurine.js',
+    file: 'index.js',
     format: 'umd',
     sourcemap: true,
     globals: {
