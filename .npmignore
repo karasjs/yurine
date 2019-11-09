@@ -7,7 +7,7 @@ Makefile
 .babelrc
 webpack.config.js
 webpack-dev.config.js
-tests/
+test/
 demo/
 node_modules/
 .idea/
