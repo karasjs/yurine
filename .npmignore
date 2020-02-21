@@ -13,3 +13,4 @@ node_modules/
 .idea/
 .DS_Store
 .travis.yml
+index.min.js*
