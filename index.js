@@ -149,7 +149,7 @@
 
           if (/^\s+$/.test(s)) {
             if (leaf.prev().name() === Node$1.CSXOpeningElement && leaf.next().name() === Node$1.CSXClosingElement) {
-              res += '"' + s.replace(/"/g, '\\"').replace(/\n/g, '\\n\\\n') + '"';
+              res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
             } else {
               res += s;
             }
@@ -159,7 +159,7 @@
               comma = false;
             }
 
-            res += '"' + s.replace(/"/g, '\\"').replace(/\n/g, '\\n\\\n') + '"';
+            res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
             comma = true;
           }
 

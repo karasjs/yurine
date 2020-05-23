@@ -100,6 +100,11 @@ describe('simple', function() {
     var res = yurine.parse(s);
     expect(res).to.eql('karas.createVd("pre",[],["a\\n\\\nb"])');
   });
+  it('enter', function() {
+    var s = '<div>\r</div>';
+    var res = yurine.parse(s);
+    expect(res).to.eql('karas.createVd("div",[],["\\r"])');
+  });
   it('blank between tag', function() {
     var s = '<div> <span/>\n</div>';
     var res = yurine.parse(s);
