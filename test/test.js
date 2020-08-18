@@ -17,7 +17,12 @@ describe('simple', function() {
   it('Component tag upper', function() {
     var s = '<Cmpt>test</Cmpt>';
     var res = yurine.parse(s);
-    expect(res).to.eql('karas.createCp(Cmpt,[],["test"])');
+    expect(res).to.eql('karas.createCp(Cmpt,[],["test"],"Cmpt")');
+  });
+  it('Component close', function() {
+    var s = '<Cmpt/>';
+    var res = yurine.parse(s);
+    expect(res).to.eql('karas.createCp(Cmpt,[],[],"Cmpt")');
   });
   it('no children', function() {
     var s = '<div></div>';

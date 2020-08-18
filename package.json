@@ -1,6 +1,6 @@
 {
   "name": "yurine",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A csx transformer for karas",
   "author": "army8735 <army8735@qq.com>",
   "maintainers": [
@@ -25,7 +25,7 @@
     "url": "git://github.com/karasjs/yurine.git"
   },
   "dependencies": {
-    "homunculus": "~1.6.0"
+    "homunculus": "~1.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

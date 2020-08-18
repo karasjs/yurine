@@ -8,8 +8,9 @@ let Node = homunculus.getClass('node', 'csx');
 
 function elem(node) {
   let res = '';
+  let tag = selfClose(node.first());
   //open和selfClose逻辑复用
-  res += selfClose(node.first());
+  res += tag.res;
   res += ',[';
   let comma = false;
   for(let i = 1, len = node.size(); i < len - 1; i++) {
@@ -52,13 +53,17 @@ function elem(node) {
         comma = true;
     }
   }
-  res += '])';
+  res += ']';
+  if(tag.isCp && tag.name) {
+    res += ',"' + tag.name + '"';
+  }
+  res += ')';
   if(node.last().name() === Node.CSXClosingElement) {
     res += ignore(node.last(), true).res;
   }
   return res;
 }
-function selfClose(node) {
+function selfClose(node, isClose) {
   let res = '';
   let name;
   let first = node.leaf(1);
@@ -71,7 +76,8 @@ function selfClose(node) {
       name += first.leaf(i).token().content();
     }
   }
-  if(/^[A-Z]/.test(name)) {
+  let isCp = /^[A-Z]/.test(name);
+  if(isCp) {
     res += 'karas.createCp(';
     res += name;
   }
@@ -102,7 +108,14 @@ function selfClose(node) {
     }
   }
   res += ']';
-  return res;
+  if(isClose && isCp) {
+    res += ',[],"' + name + '"';
+  }
+  return {
+    res,
+    isCp,
+    name,
+  };
 }
 function attr(node) {
   let res = '';
@@ -136,7 +149,7 @@ function parse(node) {
       res += elem(node);
       break;
     case Node.CSXSelfClosingElement:
-      res += selfClose(node);
+      res += selfClose(node, true).res;
       res += ')';
       break;
   }
