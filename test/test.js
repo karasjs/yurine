@@ -120,6 +120,11 @@ describe('simple', function() {
     var res = yurine.parse(s);
     expect(res).to.eql('karas.createVd("wb:share-button",{},[])');
   });
+  it('</>', function() {
+    var s = '<>123</>';
+    var res = yurine.parse(s);
+    expect(res).to.eql('karas.createFg(["123"])');
+  });
 });
 
 describe('classes', function() {

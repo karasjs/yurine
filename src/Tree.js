@@ -37,6 +37,7 @@ class Tree {
       switch(node.name()) {
         case Node.CSXElement:
         case Node.CSXSelfClosingElement:
+        case Node.CSXFragment:
           this.res += csx(node, {});
           return;
       }

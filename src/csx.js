@@ -63,6 +63,7 @@ function elem(node) {
   }
   return res;
 }
+
 function selfClose(node, isClose) {
   let res = '';
   let name;
@@ -117,6 +118,7 @@ function selfClose(node, isClose) {
     name,
   };
 }
+
 function attr(node) {
   let res = '';
   let key = node.first().token().content();
@@ -131,11 +133,60 @@ function attr(node) {
   }
   return res;
 }
+
 function spread(node) {
   return join(node.leaf(2));
 }
+
 function child(node) {
   return new Tree().parse(node).replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1');
+}
+
+function fragment(node) {
+  let res = 'karas.createFg([';
+  let comma = false;
+  for(let i = 2, len = node.size(); i < len - 2; i++) {
+    let leaf = node.leaf(i);
+    switch(leaf.name()) {
+      case Node.CSXChild:
+        if(comma) {
+          res += ',';
+          comma = false;
+        }
+        res += child(leaf);
+        comma = true;
+        break;
+      case Node.TOKEN:
+        let s = leaf.token().content();
+        //open和close之间的空白不能忽略
+        if(/^\s+$/.test(s)) {
+          if(leaf.prev().name() === Node.CSXOpeningElement && leaf.next().name() === Node.CSXClosingElement) {
+            res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
+          }
+          else {
+            res += s;
+          }
+        }
+        else {
+          if(comma) {
+            res += ',';
+            comma = false;
+          }
+          res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
+          comma = true;
+        }
+        break;
+      default:
+        if(comma) {
+          res += ',';
+          comma = false;
+        }
+        res += parse(leaf);
+        comma = true;
+    }
+  }
+  res += '])';
+  return res;
 }
 
 function parse(node) {
@@ -147,6 +198,9 @@ function parse(node) {
     case Node.CSXSelfClosingElement:
       res += selfClose(node, true).res;
       res += ')';
+      break;
+    case Node.CSXFragment:
+      res += fragment(node);
       break;
   }
   return res;

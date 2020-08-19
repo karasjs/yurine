@@ -281,6 +281,60 @@
     return new Tree().parse(node).replace(/^(\s*){/, '$1').replace(/}(\s*)$/, '$1');
   }
 
+  function fragment(node) {
+    var res = 'karas.createFg([';
+    var comma = false;
+
+    for (var i = 2, len = node.size(); i < len - 2; i++) {
+      var leaf = node.leaf(i);
+
+      switch (leaf.name()) {
+        case Node$1.CSXChild:
+          if (comma) {
+            res += ',';
+            comma = false;
+          }
+
+          res += child(leaf);
+          comma = true;
+          break;
+
+        case Node$1.TOKEN:
+          var s = leaf.token().content(); //open和close之间的空白不能忽略
+
+          if (/^\s+$/.test(s)) {
+            if (leaf.prev().name() === Node$1.CSXOpeningElement && leaf.next().name() === Node$1.CSXClosingElement) {
+              res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
+            } else {
+              res += s;
+            }
+          } else {
+            if (comma) {
+              res += ',';
+              comma = false;
+            }
+
+            res += '"' + s.replace(/"/g, '\\"').replace(/\r/g, '\\r').replace(/\n/g, '\\n\\\n') + '"';
+            comma = true;
+          }
+
+          break;
+
+        default:
+          if (comma) {
+            res += ',';
+            comma = false;
+          }
+
+          res += parse$1(leaf);
+          comma = true;
+      }
+    }
+
+    res += '])';
+    return res;
+  }
+
   function parse$1(node) {
     var res = '';
 
@@ -292,6 +346,10 @@
       case Node$1.CSXSelfClosingElement:
         res += selfClose(node, true).res;
         res += ')';
+        break;
+
+      case Node$1.CSXFragment:
+        res += fragment(node);
         break;
     }
 
@@ -347,6 +405,7 @@
           switch (node.name()) {
             case Node$2.CSXElement:
             case Node$2.CSXSelfClosingElement:
+            case Node$2.CSXFragment:
               this.res += parse$1(node);
               return;
           }
