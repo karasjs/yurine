@@ -89,7 +89,7 @@ function selfClose(node, isClose) {
     res += 'karas.createVd(';
     res += '"' + name + '"';
   }
-  res += ',[';
+  res += ',{';
   for(let i = 2, len = node.size(); i < len - 1; i++) {
     let leaf = node.leaf(i);
     if(i !== 2) {
@@ -107,7 +107,7 @@ function selfClose(node, isClose) {
         break;
     }
   }
-  res += ']';
+  res += '}';
   if(isClose && isCp) {
     res += ',[],"' + name + '"';
   }
@@ -120,10 +120,7 @@ function selfClose(node, isClose) {
 function attr(node) {
   let res = '';
   let key = node.first().token().content();
-  let name = node.parent().leaf(1).token().content();
-  let isCp = /^[A-Z]/.test(name);
-  let k = '["' + key + '"';
-  res += k + ',';
+  res += '"' + key + '":';
   let v = node.last();
   if(v.isToken()) {
     v = v.token().content();
@@ -132,7 +129,6 @@ function attr(node) {
   else {
     res += child(v);
   }
-  res += ']';
   return res;
 }
 function spread(node) {

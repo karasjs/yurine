@@ -220,7 +220,7 @@
       res += '"' + name + '"';
     }
 
-    res += ',[';
+    res += ',{';
 
     for (var _i = 2, _len = node.size(); _i < _len - 1; _i++) {
       var leaf = node.leaf(_i);
@@ -244,7 +244,7 @@
       }
     }
 
-    res += ']';
+    res += '}';
 
     if (isClose && isCp) {
       res += ',[],"' + name + '"';
@@ -260,10 +260,7 @@
   function attr(node) {
     var res = '';
     var key = node.first().token().content();
-    var name = node.parent().leaf(1).token().content();
-    var isCp = /^[A-Z]/.test(name);
-    var k = '["' + key + '"';
-    res += k + ',';
+    res += '"' + key + '":';
     var v = node.last();
 
     if (v.isToken()) {
@@ -273,7 +270,6 @@
       res += child(v);
     }
 
-    res += ']';
     return res;
   }
 
