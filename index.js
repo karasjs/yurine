@@ -282,7 +282,7 @@
   }
 
   function fragment(node) {
-    var res = 'karas.createFg([';
+    var res = 'karas.Fragment([';
     var comma = false;
 
     for (var i = 2, len = node.size(); i < len - 2; i++) {

@@ -143,7 +143,7 @@ function child(node) {
 }
 
 function fragment(node) {
-  let res = 'karas.createFg([';
+  let res = 'karas.Fragment([';
   let comma = false;
   for(let i = 2, len = node.size(); i < len - 2; i++) {
     let leaf = node.leaf(i);
