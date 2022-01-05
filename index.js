@@ -212,6 +212,9 @@
     if (isCp) {
       res += 'karas.createCp(';
       res += name;
+    } else if (name === '$') {
+      res += 'karas.createGm(';
+      res += name;
     } else if (/^\$/.test(name)) {
       res += 'karas.createGm(';
       res += '"' + name + '"';
@@ -420,6 +423,8 @@
     return Tree;
   }();
 
+  var version = "0.5.0";
+
   var Yurine =
   /*#__PURE__*/
   function () {
@@ -458,9 +463,10 @@
     return Yurine;
   }();
 
-  var index = new Yurine();
+  var o = new Yurine();
+  o.version = version;
 
-  return index;
+  return o;
 
 }));
 //# sourceMappingURL=index.js.map

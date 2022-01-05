@@ -1,5 +1,6 @@
 import homunculus from 'homunculus';
 import Tree from './Tree';
+import { version } from '../package.json';
 
 class Yurine {
   constructor() {
@@ -24,4 +25,7 @@ class Yurine {
   }
 }
 
-export default new Yurine();
+let o = new Yurine();
+o.version = version;
+
+export default o;

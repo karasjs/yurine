@@ -82,6 +82,10 @@ function selfClose(node, isClose) {
     res += 'karas.createCp(';
     res += name;
   }
+  else if(name === '$') {
+    res += 'karas.createGm(';
+    res += name;
+  }
   else if(/^\$/.test(name)) {
     res += 'karas.createGm(';
     res += '"' + name + '"';
